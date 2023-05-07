@@ -47,7 +47,8 @@ def test_raise_to_power(number, power, expected):
         assert expected == raise_to_power(number=number, power=power)
 
 
-@pytest.mark.parametrize("number, expected", [
+@pytest.mark.parametrize(
+    "number, expected", [
     (None, "Only integers are allowed"),
     ("", "Only integers are allowed"),
     ("222", "Only integers are allowed"),
