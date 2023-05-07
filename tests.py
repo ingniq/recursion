@@ -38,18 +38,37 @@ def test_raise_to_power(number, power, expected):
     if is_value_error:
         with pytest.raises(ValueError) as e:
             raise_to_power(number=number, power=power)
-            assert e.type == ValueError
             assert e.value == expected
     elif is_zero_division:
         with pytest.raises(ZeroDivisionError) as e:
             raise_to_power(number=number, power=power)
-            assert e.type == ZeroDivisionError
             assert e.value == expected
     else:
         assert expected == raise_to_power(number=number, power=power)
 
-def test_calc_sum_of_digits_of():
-    pass
+
+@pytest.mark.parametrize("number, expected", [
+    (None, "Only integers are allowed"),
+    ("", "Only integers are allowed"),
+    ("222", "Only integers are allowed"),
+    (0, 0),
+    (1, 1),
+    (10, 1),
+    (100, 1),
+    (110, 2),
+    (101, 2),
+    (111, 3),
+    (123, 6),
+    (-123, 6),
+])
+def test_calc_sum_of_digits_of(number, expected):
+    if not isinstance(number, int):
+        with pytest.raises(ValueError) as e:
+            calc_sum_of_digits_of(number=number)
+            assert e.value == expected
+    else:
+        assert expected == calc_sum_of_digits_of(number)
+
 
 def test_calc_list_length():
     pass
