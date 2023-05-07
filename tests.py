@@ -3,12 +3,14 @@ from tasks import *
 
 @pytest.mark.parametrize(
     "number, power, expected", [
-    (None, None, "Only numbers are allowed"),
-    (None, 2, "Only numbers are allowed"),
-    (2, None, "Only numbers are allowed"),
-    ("2", "2", "Only numbers are allowed"),
-    (2, "2", "Only numbers are allowed"),
-    ("2", 2, "Only numbers are allowed"),
+    (None, None, "Only integers are allowed"),
+    (None, 2, "Only integers are allowed"),
+    (2, None, "Only integers are allowed"),
+    ("2", "2", "Only integers are allowed"),
+    (2, "2", "Only integers are allowed"),
+    ("2", 2, "Only integers are allowed"),
+    (0, -2, "division by zero"),
+    (0, 0, "Not defined"),
     (-2, -2, 0.25),
     (-2, -1, -0.5),
     (-2, 0, 1),
@@ -20,8 +22,6 @@ from tasks import *
     (-1, 0, 1),
     (-1, 1, -1),
     (-1, 2, 1),
-    (0, -2, 0),
-    (0, 0, 0),
     (0, 2, 0),
     (1, -2, 1),
     (1, 0, 1),
@@ -30,15 +30,20 @@ from tasks import *
     (2, 1, 2),
     (2, 2, 4),
     (2, 3, 8),
-    (2.5, 3, 15.625),
-    (2.5, 2.5, 9.882),
 ])
 def test_raise_to_power(number, power, expected):
-    if not isinstance(number, int) or not isinstance(power, int):
-        with pytest.raises(Exception) as e:
+    is_value_error = not isinstance(number, int) or not isinstance(power, int) or (power == number == 0)
+
+    if is_value_error:
+        with pytest.raises(ValueError) as e:
             raise_to_power(number=number, power=power)
-            assert e.value == expected
             assert e.type == ValueError
+            assert e.value == expected
+    elif number == 0 and power < 0:
+        with pytest.raises(ZeroDivisionError) as e:
+            raise_to_power(number=number, power=power)
+            assert e.type == ZeroDivisionError
+            assert e.value == expected
     else:
         assert expected == raise_to_power(number=number, power=power)
 
