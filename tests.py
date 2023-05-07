@@ -37,8 +37,8 @@ def test_raise_to_power(number, power, expected):
     if not isinstance(number, int) or not isinstance(power, int):
         with pytest.raises(Exception) as e:
             raise_to_power(number=number, power=power)
-        assert e.value == expected
-        assert e.type == ValueError
+            assert e.value == expected
+            assert e.type == ValueError
     else:
         assert expected == raise_to_power(number=number, power=power)
 
