@@ -33,13 +33,14 @@ from tasks import *
 ])
 def test_raise_to_power(number, power, expected):
     is_value_error = not isinstance(number, int) or not isinstance(power, int) or (power == number == 0)
+    is_zero_division = (number == 0 and power < 0)
 
     if is_value_error:
         with pytest.raises(ValueError) as e:
             raise_to_power(number=number, power=power)
             assert e.type == ValueError
             assert e.value == expected
-    elif number == 0 and power < 0:
+    elif is_zero_division:
         with pytest.raises(ZeroDivisionError) as e:
             raise_to_power(number=number, power=power)
             assert e.type == ZeroDivisionError
