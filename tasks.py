@@ -1,7 +1,26 @@
-# 1. Возведение числа N в степень M
+# 1. Возведение числа "number" в степень "power"
 
 def raise_to_power(*, number: int, power: int) -> int:
-    pass
+    if not isinstance(number, int) or not isinstance(power, int) :
+        raise ValueError("Only integers are allowed")
+
+    if number == power == 0:
+        raise ValueError("Not defined")
+
+    if power == 0:
+        return 1
+
+    if power < 0:
+        number = 1/number
+        power *= -1
+
+    def multiply(number, power, product):
+        if power == 1:
+            return product
+
+        return multiply(number, power - 1, product * number)
+
+    return multiply(number, power, number)
 
 # 2. вычисление суммы цифр числа;
 
