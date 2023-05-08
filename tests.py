@@ -80,8 +80,17 @@ def test_calc_list_length(input, expected):
     assert expected == calc_list_length(input)
 
 
-def test_is_palindrome():
-    pass
+@pytest.mark.parametrize(
+    "input, expected", [
+    ("a", True),
+    ("abba", True),
+    ("abbaabba", True),
+    ("abbc", False),
+    ("abc", False),
+])
+def test_is_palindrome(input, expected):
+    assert expected == is_palindrome(input)
+
 
 def test_print_even_values_from():
     pass

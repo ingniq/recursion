@@ -5,6 +5,7 @@ def raise_to_power(number: int, power: int) -> int:
 
     return number
 
+
 # 2. вычисление суммы цифр числа;
 def calc_sum_of_digits_of(number: int) -> int:
     if number >= 10:
@@ -27,7 +28,13 @@ def calc_list_length(value: list) -> int:
 
 # 4. проверка, является ли строка палиндромом;
 def is_palindrome(value: str) -> bool:
-    pass
+    if len(value) in [0, 1]:
+        return True
+
+    if value[0] != value[-1]:
+        return False
+
+    return is_palindrome(value[1:-1])
 
 
 # 5. печать только чётных значений из списка;
