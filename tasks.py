@@ -1,45 +1,19 @@
 # 1. Возведение числа "number" в степень "power"
-def raise_to_power(*, number: int, power: int) -> int:
-    if not isinstance(number, int) or not isinstance(power, int):
-        raise ValueError("Only integers are allowed")
+def raise_to_power(number: int, power: int) -> int:
+    if power > 1:
+        return number * raise_to_power(number, power - 1)
 
-    if number == power == 0:
-        raise ValueError("Not defined")
-
-    if power == 0:
-        return 1
-
-    if power < 0:
-        number = 1/number
-        power *= -1
-
-    def multiply(number, power, product):
-        if power == 1:
-            return product
-
-        return multiply(number, power - 1, product * number)
-
-    return multiply(number, power, number)
-
+    return number
 
 # 2. вычисление суммы цифр числа;
 def calc_sum_of_digits_of(number: int) -> int:
-    if not isinstance(number, int):
-        raise ValueError("Only integers are allowed")
-
-    def calc_sum(number, product):
-        if number < 0:
-            number *= -1
-
-        if number < 10:
-            return product + number
-
-        product += number % 10
+    if number >= 10:
+        digit = number % 10
         number = number // 10
 
-        return calc_sum(number, product)
+        return digit + calc_sum_of_digits_of(number)
 
-    return calc_sum(number, 0)
+    return number
 
 
 # 3. расчёт длины списка, для которого разрешена только операция удаления первого элемента pop(0) (и получение длины конечно);
