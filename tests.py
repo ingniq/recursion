@@ -71,8 +71,14 @@ def test_calc_sum_of_digits_of(number, expected):
         assert expected == calc_sum_of_digits_of(number)
 
 
-def test_calc_list_length():
-    pass
+@pytest.mark.parametrize(
+    "input, expected", [
+    (list(("a","b","c")), 3),
+    (list(), 0),
+])
+def test_calc_list_length(input, expected):
+    assert expected == calc_list_length(input)
+
 
 def test_is_palindrome():
     pass

@@ -18,7 +18,11 @@ def calc_sum_of_digits_of(number: int) -> int:
 
 # 3. расчёт длины списка, для которого разрешена только операция удаления первого элемента pop(0) (и получение длины конечно);
 def calc_list_length(value: list) -> int:
-    pass
+    if value:
+        value.pop()
+        return 1 + calc_list_length(value)
+
+    return 0
 
 
 # 4. проверка, является ли строка палиндромом;
