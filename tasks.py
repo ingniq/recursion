@@ -52,10 +52,10 @@ def print_even_values_from(list_values: list, start_index=0) -> None:
 
 # 6. печать элементов списка с чётными индексами;
 def print_values_with_even_indexes(list_values: list, start_index=0) -> None:
+    start_index = start_index if (start_index % 2 == 0) else start_index + 1
+
     if start_index >= len(list_values):
         return
-
-    start_index = start_index if (start_index % 2 == 0) else start_index + 1
 
     print(list_values[start_index])
     print_values_with_even_indexes(list_values, start_index + 2)
