@@ -91,9 +91,15 @@ def test_calc_list_length(input, expected):
 def test_is_palindrome(input, expected):
     assert expected == is_palindrome(input)
 
-
-def test_print_even_values_from():
-    pass
+@pytest.mark.parametrize(
+    "input, expected", [
+    (list((1, 2, 3, 4)), "2\n4\n"),
+    (list((1, 21, 32, 44)), "32\n44\n"),
+])
+def test_print_even_values_from(input, expected, capsys):
+    print_even_values_from(input)
+    captured = capsys.readouterr()
+    assert captured.out == expected
 
 def test_print_values_with_even_indexes():
     pass

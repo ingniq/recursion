@@ -38,8 +38,16 @@ def is_palindrome(value: str) -> bool:
 
 
 # 5. печать только чётных значений из списка;
-def print_even_values_from(value: list) -> None:
-    pass
+def print_even_values_from(list_values: list) -> None:
+    if not list_values:
+        return
+
+    value = list_values.pop(0)
+
+    if value % 2 == 0:
+        print(value)
+
+    print_even_values_from(list_values)
 
 
 # 6. печать элементов списка с чётными индексами;
