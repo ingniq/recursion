@@ -51,12 +51,17 @@ def print_even_values_from(list_values: list) -> None:
 
 
 # 6. печать элементов списка с чётными индексами;
-def print_values_with_even_indexes(value: list) -> None:
-    pass
+def print_values_with_even_indexes(list_values: list) -> None:
+    if not list_values:
+        return
+
+    print(list_values[0])
+
+    print_values_with_even_indexes(list_values[2:])
 
 
 # 7. нахождение второго максимального числа в списке (с учётом, что максимальных может быть несколько, если они равны).
-def get_second_max_number_in(value: list) -> int:
+def get_second_max_number_in(list_values: list) -> int:
     pass
 
 

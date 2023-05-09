@@ -91,6 +91,7 @@ def test_calc_list_length(input, expected):
 def test_is_palindrome(input, expected):
     assert expected == is_palindrome(input)
 
+
 @pytest.mark.parametrize(
     "input, expected", [
     (list((1, 2, 3, 4)), "2\n4\n"),
@@ -101,14 +102,26 @@ def test_print_even_values_from(input, expected, capsys):
     captured = capsys.readouterr()
     assert captured.out == expected
 
-def test_print_values_with_even_indexes():
-    pass
+
+@pytest.mark.parametrize(
+    "input, expected", [
+    (list((1, 2, 3, 4)), "1\n3\n"),
+    (list((1, 21, 32, 44)), "1\n32\n"),
+    (list((1, 21, 32, 44, 12)), "1\n32\n12\n"),
+])
+def test_print_values_with_even_indexes(input, expected, capsys):
+    print_values_with_even_indexes(input)
+    captured = capsys.readouterr()
+    assert captured.out == expected
+
 
 def test_get_second_max_number_in():
     pass
 
+
 def test_get_list_of_files_recursively():
     pass
+
 
 def test_generate_balanced_parentheses():
     pass
