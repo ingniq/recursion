@@ -38,27 +38,29 @@ def is_palindrome(value: str) -> bool:
 
 
 # 5. печать только чётных значений из списка;
-def print_even_values_from(list_values: list, start_index=0) -> None:
+def print_even_values_from(list_values: list) -> None:
+    __printing_even_list_values(list_values=list_values, start_index=0)
+
+def __printing_even_list_values(*, list_values, start_index):
     if start_index >= len(list_values):
         return
 
-    value = list_values[start_index]
+    if list_values[start_index] % 2 == 0:
+        print(list_values[start_index])
 
-    if value % 2 == 0:
-        print(value)
-
-    print_even_values_from(list_values, start_index + 1)
+    __printing_even_list_values(list_values=list_values, start_index=start_index + 1)
 
 
 # 6. печать элементов списка с чётными индексами;
-def print_values_with_even_indexes(list_values: list, start_index=0) -> None:
-    start_index = start_index if (start_index % 2 == 0) else start_index + 1
+def print_values_with_even_indexes(list_values: list) -> None:
+    __printing_list_values(list_values=list_values, start_index=0, step=2)
 
+def __printing_list_values(*, list_values, start_index, step):
     if start_index >= len(list_values):
         return
 
     print(list_values[start_index])
-    print_values_with_even_indexes(list_values, start_index + 2)
+    __printing_list_values(list_values=list_values, start_index=start_index + step, step=step)
 
 
 # 7. нахождение второго максимального числа в списке (с учётом, что максимальных может быть несколько, если они равны).
