@@ -65,7 +65,18 @@ def __printing_list_values(*, list_values, start_index, step):
 
 # 7. нахождение второго максимального числа в списке (с учётом, что максимальных может быть несколько, если они равны).
 def get_second_max_number_in(list_values: list) -> int:
-    pass
+    return __find_second_max_number(list_values=list_values, index=0, first_max=0, second_max=0)
+
+def __find_second_max_number(*, list_values: list, index: int, first_max: int, second_max: int) -> int:
+    if index >= len(list_values):
+        return second_max
+
+    if list_values[index] > first_max:
+        second_max, first_max = first_max, list_values[index]
+    elif list_values[index] > second_max:
+        second_max = list_values[index]
+
+    return __find_second_max_number(list_values=list_values, index=index + 1,  first_max=first_max, second_max=second_max)
 
 
 # 8. поиск всех файлов в заданном каталоге, включая файлы, расположенные в подкаталогах произвольной вложенности.

@@ -115,8 +115,17 @@ def test_print_values_with_even_indexes(input, expected, capsys):
     assert captured.out == expected
 
 
-def test_get_second_max_number_in():
-    pass
+@pytest.mark.parametrize(
+    "input, expected", [
+    (list((1, 3, 5)), 3),
+    (list((5, 3, 5)), 5),
+    (list((1, 6, 5)), 5),
+    (list((6, 1, 5)), 5),
+    (list((1, 6, 5, 1, 3, 5)), 5),
+    (list((1, 6, 5, 1, 6, 5)), 6),
+])
+def test_get_second_max_number_in(input, expected):
+    assert expected == get_second_max_number_in(input)
 
 
 def test_get_list_of_files_recursively():
