@@ -1,2 +1,4 @@
-__pycache__/*
-test_tree_of_files_and_directories/*
+__pycache__
+.pytest_cache
+.vscode
+test_tree_of_files_and_directories
