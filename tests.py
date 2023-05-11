@@ -124,6 +124,10 @@ def test_print_values_with_even_indexes(input, expected, capsys):
     (list((1, 6, 5, 1, 3, 5)), 5),
     (list((1, 6, 5, 1, 6, 5)), 6),
     (list((1, 6, 5, 1, 6, 6)), 6),
+    (list((5, 4, 3, 2, 1)), 4),
+    (list((-5, 4, 3, 2, 1)), 3),
+    (list((-5, -4, -3, -2, 1)), -2),
+    (list((-5, -4, -3, 0, 1)), 0),
 ])
 def test_get_second_max_number_in(input, expected):
     assert expected == get_second_max_number_in(input)
