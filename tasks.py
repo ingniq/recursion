@@ -84,20 +84,29 @@ def __find_second_max_number(*, list_values: list, index: int, first_max: int, s
     return __find_second_max_number(list_values=list_values, index=index + 1,  first_max=first_max, second_max=second_max)
 
 
+from os import listdir
+from os.path import isfile, join
+
 # 8. поиск всех файлов в заданном каталоге, включая файлы, расположенные в подкаталогах произвольной вложенности.
 def get_list_of_files_recursively(path: str) -> list:
-    from os import walk
-    directory_walker = walk(path)
+    dir_items = listdir(path)
 
-    return __collect_list_of_files(directory_walker)
+    return __collect_list_of_files(path=path, dir_items=dir_items, index=0)
 
-def __collect_list_of_files(directory_walker):
-    try:
-        _, _, filenames = next(directory_walker)
-    except StopIteration:
+
+def __collect_list_of_files(*, path, dir_items, index):
+    if index >= len(dir_items):
         return []
 
-    return filenames + __collect_list_of_files(directory_walker)
+    file_names = []
+    list_item = join(path, dir_items[index])
+
+    if isfile(list_item):
+        file_names.append(dir_items[index])
+    else:
+        file_names = __collect_list_of_files(path=list_item, dir_items=listdir(list_item), index=0)
+
+    return file_names + __collect_list_of_files(path=path, dir_items=dir_items, index=index + 1)
 
 
 
