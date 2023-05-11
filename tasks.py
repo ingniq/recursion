@@ -81,7 +81,19 @@ def __find_second_max_number(*, list_values: list, index: int, first_max: int, s
 
 # 8. поиск всех файлов в заданном каталоге, включая файлы, расположенные в подкаталогах произвольной вложенности.
 def get_list_of_files_recursively(path: str) -> list:
-    pass
+    from os import walk
+    directory_walker = walk(path)
+
+    return __collect_list_of_files(directory_walker)
+
+def __collect_list_of_files(directory_walker):
+    try:
+        _, _, filenames = next(directory_walker)
+    except StopIteration:
+        return []
+
+    return filenames + __collect_list_of_files(directory_walker)
+
 
 
 # Повышенная сложность. Генерация всех корректных сбалансированных комбинаций круглых скобок (параметр -- количество открывающих скобок).

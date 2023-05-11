@@ -123,13 +123,25 @@ def test_print_values_with_even_indexes(input, expected, capsys):
     (list((6, 1, 5)), 5),
     (list((1, 6, 5, 1, 3, 5)), 5),
     (list((1, 6, 5, 1, 6, 5)), 6),
+    (list((1, 6, 5, 1, 6, 6)), 6),
 ])
 def test_get_second_max_number_in(input, expected):
     assert expected == get_second_max_number_in(input)
 
-
-def test_get_list_of_files_recursively():
-    pass
+@pytest.mark.parametrize(
+    "input, expected", [
+    (
+        "test_tree_of_files_and_directories",
+        [
+            "test_1_file_1.txt",
+            "test_1_1_file_1.txt",
+            "test_2_file_2.py",
+            "test_2_file_1.txt"
+        ]
+    ),
+])
+def test_get_list_of_files_recursively(input, expected):
+    assert expected == get_list_of_files_recursively(input)
 
 
 def test_generate_balanced_parentheses():
